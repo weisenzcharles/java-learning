@@ -1,0 +1,47 @@
+server:
+  port: 8700
+spring:
+  application:
+    name: spring-cloud-gateway
+  redis:
+    host: 192.168.0.199
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 支持本地服务发现
+      routes:
+        - id: api
+          uri: lb://spring-cloud-provider
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+            - name: RequestRateLimiter # 请求数限流
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenish-rate: 1  # 每秒恢复请求数
+                redis-rate-limiter.burst-capacity: 1 # 设置突发请求数
+                redis-rate-limiter.redis-timeout: 1  # 设置超时时间
+    globalcors:
+      cors-configurations:
+        '[/**]': # 匹配所有请求
+          allowedOrigins: '*' # 允许跨域
+          allowedMethods: # 允许跨域的请求方法
+            - GET
+            - POST
+            - PUT
+            - DELETE
+eureka:
+  instance:
+    appname: spring-cloud-gateway
+    hostname: ${eureka.instance.appname}-${server.port}
+    instance-id: ${eureka.instance.appname}-${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      # 单机
+      #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 集群
+      defaultZone: http://spring-cloud-eureka-8761:8761/eureka/,http://spring-cloud-eureka-8762:8762/eureka/,http://spring-cloud-eureka-8763:8763/eureka/

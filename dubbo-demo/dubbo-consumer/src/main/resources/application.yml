@@ -1,0 +1,18 @@
+# dubbo:
+#   registry:
+#     address: nacos://localhost:8848
+server:
+  port: 8889
+spring:
+  application:
+    name: dubbo-consumer
+dubbo:
+  application:
+    name: dubbo-consumer
+  registries:
+    shanghai:
+      address: nacos://localhost:8848 # Nacos 注册中心
+      file: ${user.home}/dubbo.cache # 配置服务地址的缓存
+    hangzhou:
+      address: zookeeper://127.0.0.1:2181
+      timeout: 10000

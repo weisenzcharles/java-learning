@@ -1,0 +1,14 @@
+user:
+  name: charles
+  age: 18
+  sex: true
+  birth: 2000/01/30
+  auto:
+    name: 宋 Plus DM-i
+    model: 比亚迪
+  hobby:
+    - coding
+    - music
+    - drive
+    - sing
+  attr: { "username": "charles","password": "123456" }

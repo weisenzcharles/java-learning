@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-boot-redisson
+  redis:
+    redisson:
+      config:
+        singleServerConfig:
+          #  password: 123456
+          address: "redis://192.168.0.123:6379"
+          database: 1
+        threads: 0
+        nettyThreads: 0
+        transportMode: "NIO"
+server:
+  port: 9988

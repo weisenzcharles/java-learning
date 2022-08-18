@@ -1,0 +1,5 @@
+charles:
+  hello:
+    suffix: 早上好
+server:
+  port: 9999

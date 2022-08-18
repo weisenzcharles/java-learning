@@ -1,0 +1,24 @@
+server:
+  port: 7171
+spring:
+  application:
+    name: spring-cloud-consumer-consul
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: spring-cloud-consumer-consul
+        service-name: spring-cloud-consumer
+        prefer-ip-address: true
+#        healthCheckPath: /actuator/health
+#        healthCheckInterval: 15s
+#        health-check-headers:
+#          X-Config-Token: 6442e58b-d1ea-182e-cfa5-cf9cddef0722
+
+# actuator info 配置
+info:
+  app.name: springcloud
+  company.name: weisenz

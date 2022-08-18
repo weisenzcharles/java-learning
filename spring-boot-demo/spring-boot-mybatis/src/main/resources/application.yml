@@ -1,0 +1,16 @@
+server:
+  port: 8800
+spring:
+  application:
+    name: spring-boot-mybatis
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.123:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: org.charles.springboot.mybatis.entity
+logging:
+  level.org.charles.springboot.mybatis.mapper: debug

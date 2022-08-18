@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      name: config-provider
+      label: master
+      profile: dev
+      uri: http://localhost:5555

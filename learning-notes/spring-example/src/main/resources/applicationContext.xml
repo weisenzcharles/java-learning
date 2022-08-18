@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean name="coffee" class="org.charles.learning.entity.Coffee">
+        <property name="name" value="标准美式"/>
+        <property name="type" value="美式"/>
+        <property name="sugar" value="多糖"/>
+        <property name="size" value="超大杯"/>
+    </bean>
+
+    <bean name="coffeeMaker" class="org.charles.learning.entity.CoffeeMaker">
+        <property name="coffee" ref="coffee"/>
+    </bean>
+    <bean name="productService" class="org.charles.learning.service.ProductService"/>
+
+    <bean id="loggerAspect" class="org.charles.learning.aspect.LoggerAspect"/>
+
+    <!-- 配置 AOP -->
+    <aop:config>
+        <!-- 指定切入点（包、类、方法） -->
+<!--        <aop:pointcut id="loggerCutpoint" expression="execution(* org.charles.learning.service.ProductService.*(..)) "/>-->
+        <aop:pointcut id="loggerCutpoint" expression="execution(* org.charles.learning.service.ProductService.executeSomeService(..)) "/>
+        <!-- 指定增强对象 -->
+        <aop:aspect id="logAspect" ref="loggerAspect">
+            <!-- 将函数标记为在切入点覆盖的方法之前执行的通知 -->
+            <aop:around pointcut-ref="loggerCutpoint" method="log"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.charles.springcloud.provider.nacos.dao.DeptDao">
+    <insert id="addDept" parameterType="Dept">
+        insert into dept (name, remark)
+        values (#{name}, #{remark});
+    </insert>
+
+    <select id="getById" resultType="Dept" parameterType="Integer">
+        select *
+        from dept
+        where id = #{id};
+    </select>
+
+    <select id="getAll" resultType="Dept">
+        select *
+        from dept;
+    </select>
+</mapper>

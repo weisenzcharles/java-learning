@@ -1,0 +1,3 @@
+service:
+  service: Service
+  url: { "hostname": "localhost","port": "8099" }

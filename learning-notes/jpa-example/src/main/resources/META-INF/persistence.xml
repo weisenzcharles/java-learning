@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="jpa" transaction-type="RESOURCE_LOCAL">
+        <!-- 
+            配置 JPA 的提供程序
+            1、配置的是 javax.persistence.spi.PersistenceProvider 接口的实现类
+            2、若项目中只有一个实现，则可以不配置该节点。
+        -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- 配置需要持久化的类 -->
+        <class>org.charles.learning.jpa.entity.User</class>
+        <class>org.charles.learning.jpa.entity.Order</class>
+        <class>org.charles.learning.jpa.entity.OrderItem</class>
+        <properties>
+            <!-- 配置数据库 -->
+            <property name="javax.persistence.jdbc.user" value="root"></property>
+            <property name="javax.persistence.jdbc.password" value="123456"></property>
+            <property name="javax.persistence.jdbc.drive" value="com.mysql.cj.jdbc.Driver"></property>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.0.86:3306/jpa_test?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+            <!-- 是否显示 sql -->
+            <property name="hibernate.show_sql" value="true"></property>
+            <!-- 是否格式化 sql -->
+            <property name="hibernate.format_sql" value="true"></property>
+            <!-- 根据实体自动映射表结构的方式 update -->
+            <property name="hibernate.hbm2ddl.auto" value="update"></property>
+            <!-- 配置 sql 方言 -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"></property>
+        </properties>
+    </persistence-unit>
+</persistence>

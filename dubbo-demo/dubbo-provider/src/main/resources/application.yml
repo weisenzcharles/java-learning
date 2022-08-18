@@ -1,0 +1,21 @@
+dubbo:
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+    rest:
+      name: rest
+      port: -1
+      server: jetty
+  registries:
+    shanghai:
+      address: nacos://localhost:8848
+    hangzhou:
+      address: zookeeper://127.0.0.1:2181
+      timeout: 10000
+
+  application:
+    name: dubbo-provider
+spring:
+  application:
+    name: dubbo-provider

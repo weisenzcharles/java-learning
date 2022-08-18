@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        ephemeral: true
+      config:
+        cluster-name: HZ
+  application:
+    name: user-service
+server:
+  port: 7001

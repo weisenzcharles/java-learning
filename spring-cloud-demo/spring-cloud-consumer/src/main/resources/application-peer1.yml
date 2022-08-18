@@ -1,0 +1,30 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: spring-cloud-consumer
+  # 防止依赖冲突
+  autoconfigure:
+    exclude: org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationAutoConfiguration
+# nacos 配置
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# eureka 配置
+eureka:
+  instance:
+    prefer-ip-address: false
+    hostname: spring-cloud-consumer-7001
+    instance-id: spring-cloud-consumer-7001
+  client:
+    service-url:
+      defaultZone: http://peer1:9001/eureka/,http://peer2:9002/eureka/,http://peer3:9003/eureka/
+#actuator info 配置
+info:
+  app.name: springcloud
+  company.name: weisenzcharles

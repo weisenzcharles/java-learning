@@ -1,0 +1,30 @@
+rocket:
+  ext:
+    consumer:
+      tlsEnable: false
+  rocketmq:
+    bytesRequestConsumer: bytesRequestConsumer
+    bytesRequestTopic: bytesRequestTopic
+    genericRequestConsumer: genericRequestConsumer
+    genericRequestTopic: genericRequestTopic
+    msgExtTopic: message-ext-topic
+    myNameServer: 127.0.0.1:9876
+    objectRequestConsumer: objectRequestConsumer
+    objectRequestTopic: objectRequestTopic
+    orderTopic: order-paid-topic
+    stringRequestConsumer: stringRequestConsumer
+    stringRequestTopic: stringRequestTopic
+    tag: tag
+    tlsEnable: false
+    topic: string-topic
+    topic.user: user-topic
+    transTopic: spring-transaction-topic
+rocketmq:
+  consumer:
+    group: my-group1
+    tlsEnable: false
+    topic: test
+  name-server: localhost:9876
+spring:
+  application:
+    name: spring-boot-rocket

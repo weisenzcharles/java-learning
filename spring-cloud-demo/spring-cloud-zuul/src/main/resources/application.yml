@@ -1,0 +1,32 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: spring-cloud-zuul
+eureka:
+  client:
+    register-with-eureka: true # 表示是否向 eureka 注册中心注册自己
+    fetch-registry: false # fetch-registry 如果为 false，则表示自己为注册中心
+    service-url:
+      defaultZone: http://spring-cloud-eureka-9001:9001/eureka/,http://spring-cloud-eureka-9002:9002/eureka/,http://spring-cloud-eureka-9003:9003/eureka/
+  instance:
+    hostname: ${eureka.instance.appname}-${server.port}
+    instance-id: spring-cloud-zuul
+    prefer-ip-address: false
+    appname: spring-cloud-zuul
+zuul:
+  routes:
+    dept.serviceId: spring-cloud-provider
+    dept.path: /dept/**
+  ignored-services: "*"  # 不能再使用这个路径访问了，ignored：忽略，隐藏全部的
+  prefix: /api # 设置公共的前缀
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

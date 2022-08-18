@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.charles.springboot.mybatis.mapper.UserMapper">
+    <insert id="insert" parameterType="org.charles.springboot.mybatis.entity.User">
+        insert into user (name, age, sex, phone, create_time, update_time)
+        values (#{name}, #{age}, #{sex}, #{phone}, #{createTime}, #{updateTime});
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        delete
+        from user
+        where id = #{id};
+    </delete>
+
+    <update id="update" parameterType="org.charles.springboot.mybatis.entity.User">
+        update user
+        set name = #{name},
+            sex  = #{sex},
+            age  = #{age}
+        where id = #{id};
+    </update>
+
+    <select id="queryById" resultType="org.charles.springboot.mybatis.entity.User" parameterType="long">
+        select *
+        from user
+        where id = #{id};
+    </select>
+
+    <select id="queryList" resultType="org.charles.springboot.mybatis.entity.User">
+        select *
+        from user;
+    </select>
+</mapper>

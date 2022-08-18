@@ -1,0 +1,25 @@
+server:
+  port: 8090
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      max-poll-records: '500'
+      auto-commit-interval: '100'
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: 'false'
+    listener:
+      poll-timeout: 500S
+      ack-mode: manual_immediate
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: '1'
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: '0'
+      batch-size: '16384'
+      buffer-memory: '33554432'
+    bootstrap-servers: localhost:9092
+  application:
+    name: spring-boot-kafka
+

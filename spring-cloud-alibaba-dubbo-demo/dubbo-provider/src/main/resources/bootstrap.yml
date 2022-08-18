@@ -1,0 +1,31 @@
+server:
+  port: 10201
+
+spring:
+  application:
+    name: dubbo-provider #项目名称
+  cloud:
+    nacos:
+      discovery:
+        namespace: ed82a624-eb8b-49d7-a7d7-4ad2c63d8b47 # 命名空间 id
+        server-addr: 127.0.0.1:8848 # 注册中心地址
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+# Dubbo 服务配置
+dubbo:
+  scan:
+    base-packages: org.charles.dubbo.provider.service # 扫描包范围
+  protocol:
+    name: dubbo # 遵循的协议
+    port: 19003 # dubbo 服务端口
+  registry:
+    address: spring-cloud://localhost # 将 dubbo 挂载到注册中心，和 <dubbo-registry address='zk 地址'> 一样
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

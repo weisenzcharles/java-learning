@@ -1,0 +1,16 @@
+server:
+  port: 9900
+
+spring:
+  application:
+    name: spring-boot-threadpool
+  # 线程池设置
+  task:
+    execution:
+      thread-name-prefix: task-
+      pool:
+        core-size: 10
+        max-size: 20
+        keep-alive: 20s
+        queue-capacity: 10
+        allow-core-thread-timeout: false

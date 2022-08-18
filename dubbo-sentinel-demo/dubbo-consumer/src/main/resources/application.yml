@@ -1,0 +1,17 @@
+server:
+  port: 9008
+spring:
+  application:
+    name: dubbo-consumer
+
+    # sentinel:
+    #   transport:
+    #     dashboard: 192.168.180.137:8888   # Sentinel 控制台的请求地址
+dubbo:
+  application:
+    name: dubbo-consumer
+  registry: 
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: org.charles.dubbo
+  

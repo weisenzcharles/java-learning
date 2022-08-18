@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: dubbo-connsumer
+  cloud:
+    # Nacos 作为注册中心的配置项
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+# Dubbo 配置项，对应 DubboConfigurationProperties 类
+dubbo:
+<<<<<<< HEAD
+  # Dubbo 服务注册中心配置，对应 RegistryConfig 类
+  registry:
+    address: spring-cloud://127.0.0.1:8848 # 指定 Dubbo 服务注册中心的地址
+  # Spring Cloud Alibaba Dubbo 专属配置项，对应 DubboCloudProperties 类
+  cloud:
+    subscribed-services: dubbo-provider # 设置订阅的应用列表，默认为 * 订阅所有应用。
+server:
+  port: 8080
+=======
+  application: # 应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+    name: dubbo-provider
+  registry: # 注册中心配置，用于配置连接注册中心相关信息。
+    address: zookeeper://192.168.0.86:2181
+    check: false
+  protocol: # 协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
+    name: dubbo
+    port: 20881
+  consumer:
+    check: false
+#  scan: org.charles.dubbo.service  #  服务暴露与发现消费所在的 package
+#nacos:
+#  name: dubbo-consumer
+#  server-addr: localhost:8848
+>>>>>>> c076e1d55413a47e8d53284cf80588ed4c6d29e2

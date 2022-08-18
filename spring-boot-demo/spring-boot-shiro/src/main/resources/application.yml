@@ -1,0 +1,12 @@
+server:
+  port: 8090
+shiro:
+  enabled: true
+  loginUrl: /login
+  sessionManager:
+    sessionIdCookieEnabled: true
+    sessionIdUrlRewritingEnabled: false
+  successUrl: /index
+  unauthorizedUrl: /unauthorized
+  web:
+    enabled: true

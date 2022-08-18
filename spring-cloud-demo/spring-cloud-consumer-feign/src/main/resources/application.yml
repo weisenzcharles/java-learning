@@ -1,0 +1,40 @@
+server:
+  port: 7077
+spring:
+  application:
+    name: spring-cloud-consumer-feign
+  main:
+    allow-bean-definition-overriding: true
+  # 防止依赖冲突
+#  autoconfigure:
+#    exclude: org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationAutoConfiguration
+  # nacos 配置
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        file-extension: yml
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+
+# eureka 配置
+eureka:
+  instance:
+    appname: spring-cloud-consumer
+    prefer-ip-address: false
+    instance-id: ${eureka.instance.appname}-${server.port}
+    hostname: ${eureka.instance.appname}-${server.port}
+  client:
+    register-with-eureka: true
+    service-url:
+      # 单机
+      #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 集群
+      defaultZone: http://spring-cloud-eureka-9001:9001/eureka/,http://spring-cloud-eureka-9002:9002/eureka/,http://spring-cloud-eureka-9003:9003/eureka/
+feign:
+  hystrix:
+    enabled: true
+# actuator info 配置
+info:
+  app.name: springcloud
+  company.name: weisenzcharles

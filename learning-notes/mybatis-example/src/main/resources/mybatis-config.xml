@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!--写法一-->
+  <properties resource="jdbc.properties"/>
+
+  <!--写法二-->
+  <!--  <properties>-->
+  <!--    <property name="jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>-->
+  <!--    <property name="jdbc.url"-->
+  <!--              value="jdbc:mysql://192.168.0.123:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;rewriteBatchedStatements=TRUE"/>-->
+  <!--    <property name="jdbc.username" value="root"/>-->
+  <!--    <property name="jdbc.password" value="123456"/>-->
+  <!--  </properties>-->
+
+  <!--写法三-->
+  <!--  <properties url="file:./src/test/java/resources/jdbc.properties"/>-->
+
+  <settings>
+    <setting name="autoMappingBehavior" value="PARTIAL"/>
+  </settings>
+
+  <typeAliases>
+    <typeAlias alias="Article" type="org.charles.learning.sql.Article"/>
+    <typeAlias alias="Author" type="org.charles.learning.sql.Author"/>
+  </typeAliases>
+
+  <typeHandlers>
+    <typeHandler javaType="org.charles.learning.sql.ArticleTypeEnum"
+                 handler="org.charles.learning.sql.ArticleTypeHandler"/>
+  </typeHandlers>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+
+  <mappers>
+    <mapper resource="mapper/ArticleMapper.xml"/>
+    <mapper resource="mapper/AuthorMapper.xml"/>
+  </mappers>
+</configuration>

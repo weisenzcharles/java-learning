@@ -1,0 +1,10 @@
+server:
+  port: 6666
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/weisenzcharles/spring-cloud-config.git

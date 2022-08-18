@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.charles.learning.sql.ArticleMapper">
+<!--  <resultMap id="articleResult" type="org.apache.ibatis.test.Article">-->
+<!--    <id property="id" column="id"/>-->
+<!--    <result property="title" column="title"/>-->
+<!--    <result property="author_id" column="author_id"/>-->
+<!--    <result property="content" column="content"/>-->
+<!--    <result property="createTime" column="create_time"/>-->
+<!--  </resultMap>-->
+
+  <resultMap id="authorResult" type="Author">
+    <id property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="age" column="age"/>
+    <result property="sex" column="sex" typeHandler="org.charles.learning.sql.EnumOrdinalTypeHandler"/>
+    <result property="email" column="email"/>
+    <collection property="articles" resultMap="articleResult"/>
+  </resultMap>
+
+  <resultMap id="articleResult" type="Article">
+    <id property="id" column="id"/>
+    <result property="title" column="title"/>
+    <result property="type" column="type" typeHandler="org.charles.learning.sql.ArticleTypeHandler"/>
+    <result property="content" column="content"/>
+    <result property="createTime" column="create_time"/>
+    <association property="author" column="artilce_author_id" javaType="Author" resultMap="authorResult"/>
+  </resultMap>
+
+  <select id="queryArticles" resultMap="articleResult">
+    SELECT `id`,
+           `title`,
+           `author_id`,
+           `content`,
+           `create_time`
+    FROM `article`
+    WHERE `author_id` = #{author_id}
+      AND `create_time` > #{createTime}
+  </select>
+
+
+  <select id="findOne" resultMap="articleResult">
+    SELECT
+      ar.id, ar.author_id AS artilce_author_id, ar.title, ar.type, ar.content, ar.create_time,
+      au.id AS author_id, au.name, au.age, au.sex, au.email
+    FROM
+      article ar, author au
+    WHERE
+      ar.author_id = au.id AND ar.id = #{id}
+  </select>
+</mapper>
